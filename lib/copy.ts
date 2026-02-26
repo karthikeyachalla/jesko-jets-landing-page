@@ -22,6 +22,27 @@ export const INIMITABLE_COPY = {
     title: "Crafting the Inimitable",
 };
 
+export const VISION_COPY = {
+    pillars: [
+        {
+            title: "Performance",
+            description: "Unmatched speed and efficiency for the global elite.",
+        },
+        {
+            title: "Precision",
+            description: "Meticulous engineering in every flight detail.",
+        },
+        {
+            title: "Privacy",
+            description: "Discretion as the ultimate luxury standard.",
+        },
+        {
+            title: "Power",
+            description: "Sovereignty over the skies, redefined.",
+        },
+    ],
+};
+
 export const FOOTER_COPY = {
     copyright: "© 2026 JESKO JETS. ALL RIGHTS RESERVED.",
     tagline: "THE FUTURE OF FLIGHT IS HERE.",

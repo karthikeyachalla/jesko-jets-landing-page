@@ -1,11 +1,11 @@
 "use client";
 
 import { useLenis } from "@/hooks/useLenis";
-import { Navigation } from "@/components/Navigation";
-import { HeroScroll } from "@/components/HeroScroll";
-import { CombinedSequence } from "@/components/CombinedSequence";
-import { Globe } from "@/components/Globe";
-import { Footer } from "@/components/Footer";
+import { Navigation } from "@/components/layout/Navigation";
+import { HeroScroll } from "@/components/visual/HeroScroll";
+import { CombinedSequence } from "@/components/visual/CombinedSequence";
+import { Globe } from "@/components/visual/Globe";
+import { Footer } from "@/components/layout/Footer";
 
 export default function Home() {
     useLenis(); // Initialize smooth scrolling

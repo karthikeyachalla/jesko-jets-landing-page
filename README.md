@@ -1,58 +1,83 @@
 # Jesko Jets - Luxury Aviation Landing Page
 
-A high-intelligence, cinematic landing page concept for a private jet company. This project is a **learning exercise** where I cloned an award-winning website design to practice advanced frontend techniques, smooth scrolling, and scroll-triggered animations.
+A cinematic, high-performance landing page concept for a private jet company. This project demonstrates advanced frontend storytelling through scroll-sequenced animations and smooth-scrolling mechanics.
 
-## 🚀 Overview
+---
 
-This website is built with a focus on premium aesthetics and smooth user interactions. It features:
-- **Cinematic Storytelling**: Uses scroll-based sequences to unfold the brand story.
-- **Advanced Animations**: Powered by Framer Motion and custom scroll-triggered effects.
-- **Smooth Scrolling**: Integrated with Lenis for a fluid, high-end feel.
-- **Interactive Elements**: Includes a custom 3D globe and interactive UI components.
+## 🏗️ Technical Design Record (TDR)
 
-## 🛠️ Tech Stack
+### The Challenge
+Creating a "wow" factor often involves heavy video files that lead to slow load times and stuttering animations. This project explores an alternative: **Scroll-Triggered Image Sequences**.
 
-- **Framework**: [Next.js 14](https://nextjs.org/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **Animations**: [Framer Motion](https://www.framer.com/motion/)
-- **Smooth Scroll**: [Lenis](https://github.com/studio-freight/lenis)
-- **Icons**: [Lucide React](https://lucide.dev/)
+### The Solution: Canvas-Based Rendering
+Instead of using `<video>` tags, the core animations (The Hero jet and the Flight sequence) are rendered using an optimized **HTML5 Canvas** pipeline:
+- **Preloading Engine**: A custom `useImagePreloader` hook caches large sequences of JPG frames in browser memory before the animation starts.
+- **Scroll Mapping**: Using `framer-motion`, scroll progress is mapped directly to frame indices.
+- **High Frame Rate**: Since the canvas draws directly from memory based on pixel-perfect scroll position, the result is "silk-smooth" 60fps interaction regardless of scroll speed.
 
-## 📖 Learning Objectives
+### Performance Stack
+- **Lenis Scroll**: Provides the weight and inertia needed to make the scroll sequences feel premium.
+- **Framer Motion**: Handles all UI transitions, text overlays, and orchestrates the canvas opacity/scale changes.
+- **Three.js (Concept)**: The 3D Globe component provides a visual anchor for global reach storytelling.
 
-The goal of this project was to:
-1. Master **complex scroll sequences** and parallax effects.
-2. Implement **high-performance web animations**.
-3. Create a **premium visual design system** using modern CSS practices.
-4. Understand the workflow of recreating award-winning interactive designs.
+---
 
-## 🏗️ Getting Started
+## 🛠️ Architecture Overview
 
-To run this project locally:
+```mermaid
+graph TD
+    A[app/page.tsx] --> B[layout/Navigation]
+    A --> C[visual/HeroScroll]
+    A --> D[visual/CombinedSequence]
+    A --> E[visual/Globe]
+    A --> F[layout/Footer]
+    
+    C --> G[hooks/useImagePreloader]
+    D --> G
+    C --> H[hooks/useScrollProgress]
+    D --> H
+    
+    G --> I[lib/constants]
+    C --> J[public/sequence-1]
+    D --> K[public/sequence-4]
+```
 
-1. **Clone the repository**:
+## 📁 Repository Structure
+
+- `app/`: Next.js 14 App Router configuration and main page.
+- `components/`:
+  - `layout/`: Foundational UI components (Nav, Footer).
+  - `visual/`: High-intelligence animation components (Canvas, Globe).
+  - `ui/`: Reusable atomic elements (Buttons, Inputs).
+- `hooks/`: Custom React hooks for sequence preloading and scroll tracking.
+- `lib/`: Centralized copy, constants, and utility functions.
+- `public/`: High-resolution asset sequences categorized by scene.
+
+---
+
+## 🚀 Getting Started
+
+1. **Clone & Install**:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/jesko-jets.git
-   ```
-
-2. **Install dependencies**:
-   ```bash
+   git clone https://github.com/karthikeyachalla/jesko-jets-landing-page.git
+   cd jesko-jets-landing-page
    npm install
    ```
 
-3. **Run the development server**:
+2. **Development**:
    ```bash
    npm run dev
    ```
 
-4. **Open in browser**:
-   Navigate to [http://localhost:3000](http://localhost:3000).
+3. **Build**:
+   ```bash
+   npm run build
+   ```
 
 ## 📄 License
 
 This project is open-source and available under the [MIT License](LICENSE).
 
 ---
-
 > [!NOTE]
-> This is a learning project created for educational purposes. All assets and design inspirations are credited to their respective owners.
+> This is a learning project inspired by award-winning interactive designs (e.g., Awwwards). All flight assets are used for educational/demonstration purposes.
